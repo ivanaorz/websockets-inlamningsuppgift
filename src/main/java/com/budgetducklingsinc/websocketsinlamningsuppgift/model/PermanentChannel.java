@@ -4,10 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,12 +13,12 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-
+@ToString
 public class PermanentChannel {
 
     @Id //primary key
     @GeneratedValue(strategy = GenerationType.AUTO) // AUTO_INCREMENT
-    private long id;
+    private String id;
 
     private String title;
 
