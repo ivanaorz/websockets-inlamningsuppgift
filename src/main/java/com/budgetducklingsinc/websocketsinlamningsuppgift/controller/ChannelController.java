@@ -71,7 +71,7 @@ public class ChannelController {
 
     @PostMapping("/permanentChannels/{permanentChannelId}/chatRooms")
     public ResponseEntity<Object> createChatRoom(@PathVariable String permanentChannelId, @RequestBody ChatRoom chatRoom) {
-        String chatRoomId = channelService.createChatRoom(permanentChannelId, chatRoom);
+        String chatRoomId = String.valueOf(channelService.createChatRoom(permanentChannelId, chatRoom));
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/chatRoomId")
                 .buildAndExpand(chatRoomId).toUri();
 
