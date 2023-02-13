@@ -18,9 +18,9 @@ public class PermanentChannel {
 
     @Id //primary key
     @GeneratedValue(strategy = GenerationType.AUTO) // AUTO_INCREMENT
-    private String id;
+    private long id;
 
-    private String title;
+    private String permanentChannelName;
 
     private List<ChatRoom> chatRooms;
 

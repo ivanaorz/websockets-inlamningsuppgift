@@ -17,7 +17,7 @@ public class ChatRoom {
 
     @Id //primary key
     @GeneratedValue(strategy = GenerationType.AUTO) // AUTO_INCREMENT
-    private String id;
+    private long id;
 
     private String title;
 }
