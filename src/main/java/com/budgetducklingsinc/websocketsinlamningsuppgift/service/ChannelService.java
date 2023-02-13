@@ -1,49 +1,44 @@
 package com.budgetducklingsinc.websocketsinlamningsuppgift.service;
 
 import com.budgetducklingsinc.websocketsinlamningsuppgift.model.ChatRoom;
-import com.budgetducklingsinc.websocketsinlamningsuppgift.model.PermanentChannel;
-import com.budgetducklingsinc.websocketsinlamningsuppgift.repository.JpaChannelRepository;
+import com.budgetducklingsinc.websocketsinlamningsuppgift.repository.ChannelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 @Service
 public class ChannelService {
 
     @Autowired
-    private JpaChannelRepository jpaChannelRepository;
+    private ChannelRepository channelRepository;
 
-    private static List<PermanentChannel> permanentChannels = new ArrayList<>();
-
-    static {
+//    private static List<PermanentChannel> permanentChannels = new ArrayList<>();
+//
+//    static {
 //        ChatRoom chatRoom1 = new ChatRoom(long id, String title);
 
-        ChatRoom chatRoom1 = new ChatRoom(1, "Chat room 1. Fashion");
-
-        ChatRoom chatRoom2 = new ChatRoom(2, "Chat room 2. Cars");
-
-        ChatRoom chatRoom3 = new ChatRoom(1, "Chat room 3. Art");
+//        ChatRoom chatRoom1 = new ChatRoom(1, "Chat room 1. Fashion");
+//
+//        ChatRoom chatRoom2 = new ChatRoom(2, "Chat room 2. Cars");
+//
+//        ChatRoom chatRoom3 = new ChatRoom(1, "Chat room 3. Art");
 
 //        List<ChatRoom> chatRooms = new ArrayList<>(Arrays.asList(new ChatRoom()));
 
-        List<ChatRoom> chatRooms = new ArrayList<>(Arrays.asList(chatRoom1, chatRoom2, chatRoom3));
+//        List<ChatRoom> chatRooms = new ArrayList<>(Arrays.asList(chatRoom1, chatRoom2, chatRoom3));
+//
+//        PermanentChannel permanentChannel = new PermanentChannel(1, "Permanent Channel",chatRooms);
+//
+//        permanentChannels.add(permanentChannel);
 
-        PermanentChannel permanentChannel = new PermanentChannel(1, "Permanent Channel",chatRooms);
+//    }
 
-        permanentChannels.add(permanentChannel);
-
-    }
-
-    public PermanentChannel getPermanentChannelById(String permanentChannelId) {
-        return jpaChannelRepository.getPermanentChannelById(permanentChannelId);
-    }
+//    public PermanentChannel getPermanentChannelById(String permanentChannelId) {
+//        return jpaChannelRepository.getPermanentChannelById(permanentChannelId);
+//    }
 
 
 
@@ -55,9 +50,11 @@ public class ChannelService {
 //        if(optionalPermanentChannel.isEmpty()) return null;
 //        return optionalPermanentChannel.get();
 //    }
-    public List<ChatRoom> getAllChatRooms(String permanentChannelId) {
 
-        return jpaChannelRepository.getAllChatRooms(permanentChannelId);
+
+    public List<ChatRoom> getAllChatRooms() {
+
+        return channelRepository.findAll();
     }
 
 
@@ -68,8 +65,8 @@ public class ChannelService {
 //    }
 
 
-    public ChatRoom getChatRoomByTitle(String permanentChannelId, String chatRoomTitle) {
-        return jpaChannelRepository.getChatRoomByTitle(permanentChannelId, chatRoomTitle);
+    public ChatRoom getChatRoomBy(String chatRoomTitle) {
+        return channelRepository.findChatRoomByTitle(chatRoomTitle);
     }
 
 //    public ChatRoom getChatRoomByTitle(String permanentChannelId, String chatRoomTitle) {
@@ -82,8 +79,8 @@ public class ChannelService {
 //    }
 
 
-    public ChatRoom getChatRoomById(String permanentChannelId, String chatRoomId) {
-        return jpaChannelRepository.getChatRoomById(permanentChannelId, chatRoomId);
+    public ChatRoom getChatRoomById(String chatRoomId) {
+        return channelRepository.findChatRoomById(chatRoomId);
     }
 //    public ChatRoom getChatRoomById(String permanentChannelId, String chatRoomId) {
 //        List<ChatRoom> permanentChannelChatRooms = getAllChatRooms(permanentChannelId);
@@ -95,8 +92,8 @@ public class ChannelService {
 //    }
 
 
-    public ChatRoom createChatRoom(String permanentChannelId, ChatRoom chatRoom) {
-        return jpaChannelRepository.createChatRoom(permanentChannelId, chatRoom);
+    public ChatRoom createChatRoom(ChatRoom chatRoom) {
+        return channelRepository.save(chatRoom);
     }
 
 //    public String createChatRoom(String permanentChannelId, ChatRoom chatRoom) {
@@ -114,8 +111,8 @@ public class ChannelService {
 //
 //    }
 
-    public void deleteChatRoom(String permanentChannelId, String chatRoomId) {
-        jpaChannelRepository.deleteChatRoom(permanentChannelId, chatRoomId);
+    public void deleteChatRoom(String chatRoomId) {
+        channelRepository.removeById(chatRoomId);
     }
 
 //    public String deleteChatRoom(String permanentChannelId, String chatRoomId) {
