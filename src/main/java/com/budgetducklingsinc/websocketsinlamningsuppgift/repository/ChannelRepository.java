@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ChannelRepository extends JpaRepository<ChatRoom, Long> {
 
-//      PermanentChannel getPermanentChannelById(String permanentChannelId);
+
 
       List<ChatRoom> findAll();
 
