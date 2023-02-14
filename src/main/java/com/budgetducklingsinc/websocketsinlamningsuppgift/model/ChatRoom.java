@@ -12,13 +12,13 @@ import lombok.*;
 public class ChatRoom {
 
 
-    @Id //primary key
-    @GeneratedValue(strategy = GenerationType.AUTO) // AUTO_INCREMENT
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     @Column(name="id")
     private Long id;
 
     @Column(name="title")
     private String title;
 
-//    private String permanentChannel;
 }
