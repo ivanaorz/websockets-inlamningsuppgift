@@ -26,8 +26,8 @@ public class ChannelService {
     }
 
 
-    public ChatRoom getChatRoomById(String chatRoomId) {
-        return channelRepository.findChatRoomById(chatRoomId);
+    public ChatRoom getChatRoomById(Long id) {
+        return channelRepository.findChatRoomById(id);
     }
 
 
@@ -37,8 +37,8 @@ public class ChannelService {
     }
 
 
-    public void deleteChatRoom(String chatRoomId) {
-        channelRepository.removeById(chatRoomId);
+    public void deleteChatRoom(Long id) {
+        channelRepository.removeById(id);
     }
 
 }

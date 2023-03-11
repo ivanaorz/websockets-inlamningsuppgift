@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @Entity
 @ToString
+@Table(name="chatRooms")
 public class ChatRoom {
 
 
