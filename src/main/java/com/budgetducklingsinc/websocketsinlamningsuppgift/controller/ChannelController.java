@@ -2,6 +2,8 @@ package com.budgetducklingsinc.websocketsinlamningsuppgift.controller;
 
 import com.budgetducklingsinc.websocketsinlamningsuppgift.model.ChatRoom;
 import com.budgetducklingsinc.websocketsinlamningsuppgift.service.ChannelService;
+import com.budgetducklingsinc.websocketsinlamningsuppgift.ws.ChatRoomSocketHandler;
+import com.budgetducklingsinc.websocketsinlamningsuppgift.ws.PermanentChannelSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,12 @@ public class ChannelController {
 
     @Autowired
     private ChannelService channelService;
+
+//    @Autowired
+//    private ChatRoomSocketHandler chatRoomSocketHandler;
+//
+//    @Autowired
+//    private PermanentChannelSocketHandler permanentChannelSocketHandler;
 
     @GetMapping("/permanentChannels")
     public ResponseEntity<List<ChatRoom>> getAllChatRooms() {
@@ -37,9 +45,9 @@ public class ChannelController {
     }
 
 
-    @GetMapping("/permanentChannels/chatRooms/{chatRoomId}")
-    public ResponseEntity<ChatRoom> getChatRoomById(@PathVariable String chatRoomId) {
-        ChatRoom chatRoom = channelService.getChatRoomById(chatRoomId);
+    @GetMapping("/permanentChannels/chatRooms/{id}")
+    public ResponseEntity<ChatRoom> getChatRoomById(@PathVariable Long id) {
+        ChatRoom chatRoom = channelService.getChatRoomById(id);
         if (chatRoom == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.status(HttpStatus.OK).body(chatRoom);
@@ -60,9 +68,9 @@ public class ChannelController {
     }
 
 
-    @DeleteMapping("/permanentChannels/chatRooms/{chatRoomId}")
-    public ResponseEntity<Void> deleteChatRoom(@PathVariable String chatRoomId) {
-        channelService.deleteChatRoom(chatRoomId);
+    @DeleteMapping("/permanentChannels/chatRooms/{id}")
+    public ResponseEntity<Void> deleteChatRoom(@PathVariable Long id) {
+        channelService.deleteChatRoom(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 }

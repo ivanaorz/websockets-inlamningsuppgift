@@ -15,11 +15,11 @@ public interface ChannelRepository extends JpaRepository<ChatRoom, Long> {
 
       ChatRoom findChatRoomByTitle(String chatRoomTitle);
 
-      ChatRoom findChatRoomById(String chatRoomId);
+      ChatRoom findChatRoomById(Long id);
 
       ChatRoom save(ChatRoom chatRoom);
 
-      void removeById(String chatRoomId);
+      void removeById(Long id);
 
 
 }
