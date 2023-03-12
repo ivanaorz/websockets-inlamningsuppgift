@@ -21,11 +21,6 @@ public class ChannelController {
     @Autowired
     private ChannelService channelService;
 
-//    @Autowired
-//    private ChatRoomSocketHandler chatRoomSocketHandler;
-//
-//    @Autowired
-//    private PermanentChannelSocketHandler permanentChannelSocketHandler;
 
     @GetMapping("/permanentChannels")
     public ResponseEntity<List<ChatRoom>> getAllChatRooms() {
@@ -36,9 +31,9 @@ public class ChannelController {
     }
 
 
-    @GetMapping("/permanentChannels/chatRooms/{chatRoomTitle}")
-    public ResponseEntity<ChatRoom> getChatRoomByTitle(@PathVariable String chatRoomTitle) {
-        ChatRoom chatRoom = channelService.getChatRoomBy(chatRoomTitle);
+    @GetMapping("/permanentChannels/chatRooms/{title}")
+    public ResponseEntity<ChatRoom> getChatRoomByTitle(@PathVariable String title) {
+        ChatRoom chatRoom = channelService.getChatRoomBy(title);
         if (chatRoom == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.status(HttpStatus.OK).body(chatRoom);
@@ -52,6 +47,7 @@ public class ChannelController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         return ResponseEntity.status(HttpStatus.OK).body(chatRoom);
     }
+
 
 
     @PostMapping("/permanentChannels/chatRooms")

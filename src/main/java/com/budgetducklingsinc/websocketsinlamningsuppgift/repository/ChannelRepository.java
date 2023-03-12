@@ -13,7 +13,7 @@ public interface ChannelRepository extends JpaRepository<ChatRoom, Long> {
 
       List<ChatRoom> findAll();
 
-      ChatRoom findChatRoomByTitle(String chatRoomTitle);
+      ChatRoom findChatRoomByTitle(String title);
 
       ChatRoom findChatRoomById(Long id);
 
