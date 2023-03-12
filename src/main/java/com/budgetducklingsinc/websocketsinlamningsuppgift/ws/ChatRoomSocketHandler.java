@@ -1,8 +1,6 @@
 package com.budgetducklingsinc.websocketsinlamningsuppgift.ws;
 
 import com.budgetducklingsinc.websocketsinlamningsuppgift.model.ChatRoom;
-import com.budgetducklingsinc.websocketsinlamningsuppgift.service.ChannelService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -13,8 +11,6 @@ import java.util.List;
 
 public class ChatRoomSocketHandler extends TextWebSocketHandler {
 
-//    @Autowired
-//    private ChannelService channelService;
 
     private List<WebSocketSession> webSocketSessions = new ArrayList<>();
 

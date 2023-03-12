@@ -21,8 +21,8 @@ public class ChannelService {
 
 
 
-    public ChatRoom getChatRoomBy(String chatRoomTitle) {
-        return channelRepository.findChatRoomByTitle(chatRoomTitle);
+    public ChatRoom getChatRoomBy(String title) {
+        return channelRepository.findChatRoomByTitle(title);
     }
 
 
