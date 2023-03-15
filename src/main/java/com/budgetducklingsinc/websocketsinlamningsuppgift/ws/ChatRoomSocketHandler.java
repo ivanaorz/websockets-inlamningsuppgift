@@ -15,11 +15,7 @@ import java.util.List;
 
 public class ChatRoomSocketHandler extends TextWebSocketHandler {
 
-    
-
     private List<WebSocketSession> webSocketSessions = new ArrayList<>();
-
-
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -30,7 +26,7 @@ public class ChatRoomSocketHandler extends TextWebSocketHandler {
             broadcast(messageToSend);
         }
     }
-        public void broadcast(String messageToSend) throws IOException {
+    public void broadcast(String messageToSend) throws IOException {
         Gson gson = new Gson();
 
         for (WebSocketSession webSocketSession: webSocketSessions) {
@@ -38,13 +34,14 @@ public class ChatRoomSocketHandler extends TextWebSocketHandler {
             webSocketSession.sendMessage(new TextMessage(textMessage));
 
         }
-        }
+    }
 
 
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) {
+    public void afterConnectionEstablished(WebSocketSession session) throws IOException {
         webSocketSessions.add(session);
+
     }
 
 
