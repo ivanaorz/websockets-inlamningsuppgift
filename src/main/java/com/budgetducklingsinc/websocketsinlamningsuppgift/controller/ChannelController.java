@@ -16,13 +16,14 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping("permanentChannels")
 public class ChannelController {
 
     @Autowired
     private ChannelService channelService;
 
 
-    @GetMapping("/permanentChannels")
+    @GetMapping
     public ResponseEntity<List<ChatRoom>> getAllChatRooms() {
         List<ChatRoom> chatRooms = channelService.getAllChatRooms();
         if (chatRooms == null)
@@ -31,7 +32,7 @@ public class ChannelController {
     }
 
 
-    @GetMapping("/permanentChannels/chatRooms/{title}")
+    @GetMapping("/chatRooms/{title}")
     public ResponseEntity<ChatRoom> getChatRoomByTitle(@PathVariable String title) {
         ChatRoom chatRoom = channelService.getChatRoomBy(title);
         if (chatRoom == null)
@@ -40,7 +41,7 @@ public class ChannelController {
     }
 
 
-    @GetMapping("/permanentChannels/chatRooms/{id}")
+    @GetMapping("/chatRooms/{id}")
     public ResponseEntity<ChatRoom> getChatRoomById(@PathVariable Long id) {
         ChatRoom chatRoom = channelService.getChatRoomById(id);
         if (chatRoom == null)
@@ -50,7 +51,7 @@ public class ChannelController {
 
 
 
-    @PostMapping("/permanentChannels/chatRooms")
+    @PostMapping("/chatRooms")
     public ResponseEntity createChatRoom(@RequestBody ChatRoom chatRoom) {
         ChatRoom persistedChatRoom = channelService.createChatRoom(chatRoom);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -64,7 +65,7 @@ public class ChannelController {
     }
 
 
-    @DeleteMapping("/permanentChannels/chatRooms/{id}")
+    @DeleteMapping("/chatRooms/{id}")
     public ResponseEntity<Void> deleteChatRoom(@PathVariable Long id) {
         channelService.deleteChatRoom(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
