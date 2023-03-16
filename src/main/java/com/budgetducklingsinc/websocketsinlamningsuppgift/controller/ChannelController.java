@@ -32,22 +32,22 @@ public class ChannelController {
     }
 
 
-    @GetMapping("/chatRooms/{title}")
-    public ResponseEntity<ChatRoom> getChatRoomByTitle(@PathVariable String title) {
-        ChatRoom chatRoom = channelService.getChatRoomBy(title);
-        if (chatRoom == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return ResponseEntity.status(HttpStatus.OK).body(chatRoom);
-    }
+//    @GetMapping("/chatRooms/{title}")
+//    public ResponseEntity<ChatRoom> getChatRoomByTitle(@PathVariable String title) {
+//        ChatRoom chatRoom = channelService.getChatRoomBy(title);
+//        if (chatRoom == null)
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//        return ResponseEntity.status(HttpStatus.OK).body(chatRoom);
+//    }
 
 
-    @GetMapping("/chatRooms/{id}")
-    public ResponseEntity<ChatRoom> getChatRoomById(@PathVariable Long id) {
-        ChatRoom chatRoom = channelService.getChatRoomById(id);
-        if (chatRoom == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        return ResponseEntity.status(HttpStatus.OK).body(chatRoom);
-    }
+//    @GetMapping("/chatRooms/{id}")
+//    public ResponseEntity<ChatRoom> getChatRoomById(@PathVariable Long id) {
+//        ChatRoom chatRoom = channelService.getChatRoomById(id);
+//        if (chatRoom == null)
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//        return ResponseEntity.status(HttpStatus.OK).body(chatRoom);
+//    }
 
 
 

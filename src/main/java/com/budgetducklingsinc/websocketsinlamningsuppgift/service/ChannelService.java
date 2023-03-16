@@ -22,14 +22,14 @@ public class ChannelService {
 
 
 
-    public ChatRoom getChatRoomBy(String title) {
-        return channelRepository.findChatRoomByTitle(title);
-    }
+//    public ChatRoom getChatRoomBy(String title) {
+//        return channelRepository.findChatRoomByTitle(title);
+//    }
 
 
-    public ChatRoom getChatRoomById(Long id) {
-        return channelRepository.findChatRoomById(id);
-    }
+//    public ChatRoom getChatRoomById(Long id) {
+//        return channelRepository.findChatRoomById(id);
+//    }
 
 
 
