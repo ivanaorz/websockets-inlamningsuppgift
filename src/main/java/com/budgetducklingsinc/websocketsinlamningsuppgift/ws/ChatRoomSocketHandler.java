@@ -1,9 +1,5 @@
 package com.budgetducklingsinc.websocketsinlamningsuppgift.ws;
 
-import com.budgetducklingsinc.websocketsinlamningsuppgift.model.ChatRoom;
-import com.budgetducklingsinc.websocketsinlamningsuppgift.service.ChannelService;
-import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -12,42 +8,39 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.Exception;
 
 public class ChatRoomSocketHandler extends TextWebSocketHandler {
 
-    private List<WebSocketSession> webSocketSessions = new ArrayList<>();
+    private final List<WebSocketSession> webSocketSessions = new ArrayList<>();
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        for (WebSocketSession webSocketSession : webSocketSessions) {
-            webSocketSession.sendMessage(new TextMessage(message.getPayload()));
+        String messageContent = message.getPayload();
+        broadcast(messageContent);
 
-            String messageToSend = session.getHandshakeHeaders().getFirst("id");
-            broadcast(messageToSend);
         }
-    }
-    public void broadcast(String messageToSend) throws IOException {
-        Gson gson = new Gson();
+
+    public void broadcast(String messageContent) throws IOException {
+        TextMessage messageToSend = new TextMessage(messageContent);
 
         for (WebSocketSession webSocketSession: webSocketSessions) {
-            String textMessage = gson.toJson(messageToSend);
-            webSocketSession.sendMessage(new TextMessage(textMessage));
+
+            if (webSocketSession.isOpen())
+              webSocketSession.sendMessage(messageToSend);
 
         }
     }
 
 
-
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws IOException {
-        webSocketSessions.add(session);
-
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+            webSocketSessions.add(session);
     }
 
 
-
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         webSocketSessions.remove(session);
     }
 }
