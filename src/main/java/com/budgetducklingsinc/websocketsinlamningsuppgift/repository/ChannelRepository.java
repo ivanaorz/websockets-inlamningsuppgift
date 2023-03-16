@@ -13,9 +13,9 @@ public interface ChannelRepository extends JpaRepository<ChatRoom, Long> {
 
       List<ChatRoom> findAll();
 
-      ChatRoom findChatRoomByTitle(String title);
-
-      ChatRoom findChatRoomById(Long id);
+//      ChatRoom findChatRoomByTitle(String title);
+//
+//      ChatRoom findChatRoomById(Long id);
 
       ChatRoom save(ChatRoom chatRoom);
 
