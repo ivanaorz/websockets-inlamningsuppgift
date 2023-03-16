@@ -65,11 +65,13 @@ public class ChannelController {
     }
 
 
+
     @DeleteMapping("/chatRooms/{id}")
-    public ResponseEntity<Void> deleteChatRoom(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteChatRoom(@PathVariable ("id") Long id) {
         channelService.deleteChatRoom(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
+
 }
 
 

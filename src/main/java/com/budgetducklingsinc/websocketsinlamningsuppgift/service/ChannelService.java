@@ -3,6 +3,7 @@ package com.budgetducklingsinc.websocketsinlamningsuppgift.service;
 import com.budgetducklingsinc.websocketsinlamningsuppgift.model.ChatRoom;
 import com.budgetducklingsinc.websocketsinlamningsuppgift.repository.ChannelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ProblemDetail;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,5 +41,6 @@ public class ChannelService {
     public void deleteChatRoom(Long id) {
         channelRepository.removeById(id);
     }
+
 
 }
